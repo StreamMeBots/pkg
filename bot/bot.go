@@ -61,6 +61,7 @@ func New(host, key, secret, userPublicId string) (*Bot, error) {
 		tcp:     tcpclient.New(host),
 		started: time.Now().UTC(),
 		state:   Disconnected,
+		subs:    make(map[string]chan interface{}),
 	}
 
 	if err := b.isOnline(); err != nil {

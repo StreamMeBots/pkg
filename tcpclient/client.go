@@ -218,7 +218,8 @@ func (c *Client) run() error {
 					if r.timeout > 0 {
 						conn.SetReadDeadline(time.Now().Add(r.timeout))
 					} else {
-						conn.SetReadDeadline(time.Now().Add(time.Second * 10))
+						// no timeout
+						conn.SetReadDeadline(time.Time{})
 					}
 
 					cmd, err := parser.Parse(conn)
