@@ -5,8 +5,8 @@ import (
 	"log"
 	"time"
 
-	"github.com/Bots-Bots-Bots/pkg/commands"
-	"github.com/Bots-Bots-Bots/pkg/tcpclient"
+	"github.com/StreamMeBots/pkg/commands"
+	"github.com/StreamMeBots/pkg/tcpclient"
 )
 
 func main() {

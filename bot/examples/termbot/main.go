@@ -12,8 +12,8 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/Bots-Bots-Bots/pkg/bot"
-	"github.com/Bots-Bots-Bots/pkg/commands"
+	"github.com/StreamMeBots/pkg/bot"
+	"github.com/StreamMeBots/pkg/commands"
 )
 
 var stdIn = make(chan string, 10)

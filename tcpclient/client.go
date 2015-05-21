@@ -38,8 +38,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/Bots-Bots-Bots/pkg/commands"
-	"github.com/Bots-Bots-Bots/pkg/parser"
+	"github.com/StreamMeBots/pkg/commands"
+	"github.com/StreamMeBots/pkg/parser"
 )
 
 // Client represents methods used to interface with the connected TCP server

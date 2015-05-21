@@ -16,7 +16,7 @@ import (
 	"io"
 	"unicode"
 
-	"github.com/Bots-Bots-Bots/pkg/commands"
+	"github.com/StreamMeBots/pkg/commands"
 )
 
 // Errors
