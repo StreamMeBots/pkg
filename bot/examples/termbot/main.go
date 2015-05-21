@@ -24,7 +24,7 @@ func main() {
 	publicId := flag.String("publicId", "", "room you want to join to")
 	key := flag.String("key", "", "Bot key")
 	secret := flag.String("secret", "", "Bot secret")
-	host := flag.String("host", "pds.dev.ifi.tv:2020", "Bot secret")
+	host := flag.String("host", "", "bot host server")
 
 	flag.Parse()
 
