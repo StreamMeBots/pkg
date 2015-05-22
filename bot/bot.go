@@ -1,3 +1,6 @@
+/*
+* Package bot
+ */
 package bot
 
 import (
@@ -42,14 +45,15 @@ type Bot struct {
 	started time.Time
 }
 
+// RoomId returns the chat room ID that the bot uses to connect to the chat room.
 func (b *Bot) RoomId() string {
 	return string(b.room)
 }
 
 // Info represents stats and state about a bot.
 type Info struct {
-	State   State
-	Started time.Time
+	State   State     // Current state of the bot
+	Started time.Time // When the bot was started
 }
 
 // New is the constructor for Bot. The Bot will connect and join to the bot's configured chat room
@@ -113,7 +117,7 @@ func (b *Bot) Read() (*commands.Command, error) {
 	return b.ReadTimeout(0)
 }
 
-// ReadTimeout is the same as Read but adds a timeout to the read
+// ReadTimeout is the same as Read but adds a timeout.
 func (b *Bot) ReadTimeout(d time.Duration) (*commands.Command, error) {
 	cmd, err := b.tcp.Read(d)
 
@@ -171,26 +175,32 @@ func (b *Bot) Say(msg string) error {
 	return b.write(b.room.Say(msg))
 }
 
+// Kick is used to kick a user from chat
 func (b *Bot) Kick(userPublicId string) error {
 	return b.write(b.room.Kick(userPublicId))
 }
 
+// Ban is used to Ban a user from chat
 func (b *Bot) Ban(userPublicId string) error {
 	return b.write(b.room.Ban(userPublicId))
 }
 
+// Mod is used to mod a user in chat
 func (b *Bot) Mod(userPublicId string) error {
 	return b.write(b.room.Mod(userPublicId))
 }
 
+// MuteGuest is used to mute a user with a role of "guest"
 func (b *Bot) MuteGuest(userPublicId string) error {
 	return b.write(b.room.MuteGuest(userPublicId))
 }
 
+// Mute is used to mute a user
 func (b *Bot) Mute(userPublicId string) error {
 	return b.write(b.room.Mute(userPublicId))
 }
 
+// Unmute unmutes a previously muted user
 func (b *Bot) UnMute(userPublicId string) error {
 	return b.write(b.room.UnMute(userPublicId))
 }

@@ -3,53 +3,47 @@ package main
 import (
 	"flag"
 	"log"
-	"time"
 
 	"github.com/StreamMeBots/pkg/commands"
 	"github.com/StreamMeBots/pkg/tcpclient"
 )
 
+// NOTE: for a higher abstraction use the bot package
 func main() {
 	// command line flags
 	publicId := flag.String("publicId", "", "room you want to join to")
-	key := flag.String("key", "", "key")
-	secret := flag.String("secret", "", "secret")
+	key := flag.String("bot-key", "", "bot key")
+	secret := flag.String("bot-secret", "", "bot secret")
+	host := flag.String("chat-host", "www.stream.me:2020", "Chat server address")
 
 	flag.Parse()
 
-	c := tcpclient.New("pds.dev.ifi.tv:2020")
+	// chat client.
+	c := tcpclient.New(*host)
 
+	// create room, gives us access to available chat room commands
 	room := commands.NewRoom(*publicId)
 
-	// join room
+	// authenticate
 	if err := c.Write(room.Pass(*key, *secret), 0); err != nil {
 		log.Fatal(err)
 	}
 
-	cmd, err := c.Read(time.Second)
-	if err != nil {
-		log.Println("read error:", err)
-	} else {
-		log.Println("Command:", cmd.Name)
-		log.Println("Args:", cmd.Args)
-	}
-
+	// join room
 	if err := c.Write(room.Join(), 0); err != nil {
 		log.Fatal(err)
 	}
 
-	for {
-		log.Println("Read")
-		cmd, err := c.Read(0)
-		if err != nil {
-			log.Println("read error:", err)
-			continue
-		}
-		log.Println("from chat:", cmd.Name, cmd.Args)
-		if cmd.Name == "SAY" && cmd.Args["username"] != "loyaltyBot" {
-			if err := c.Write(room.Say(cmd.Args["message"]), 0); err != nil {
-				log.Println("write error:", err)
-			}
-		}
+	// Hello, World!
+	if err := c.Write(room.Say("Hello, World!"), 0); err != nil {
+		log.Println("write error:", err)
 	}
+
+	// Leave the chat room
+	if err := c.Write(room.Leave(), 0); err != nil {
+		log.Println("write error:", err)
+	}
+
+	// close the client connection
+	c.Close()
 }

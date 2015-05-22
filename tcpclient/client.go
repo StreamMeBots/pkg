@@ -8,22 +8,6 @@
 * Assumptions:
 *
 *   - messages arrive in a `<COMMAND> key="value" key2="value2"` ending in a '\n' character format
-*
-* Usage:
-*	c := client.New("example.com:2020")
-*
-*   // simple echo server
-*   for {
-*		msg, err := c.Read()
-*		if err != nil {
-*			// handle read error
-*			continue
-*		}
-*
-*		if err := c.Write(string(msg)); err != nil {
-*			// handle write error
-*		}
-*	}
  */
 package tcpclient
 

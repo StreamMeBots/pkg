@@ -1,5 +1,5 @@
 /*
-* termbot demonstrates a trivial command line chat client.
+* termbot demonstrates a trivial command line chat client that lets you chat as your bot.
  */
 package main
 
@@ -16,10 +16,9 @@ import (
 	"github.com/StreamMeBots/pkg/commands"
 )
 
-var stdIn = make(chan string, 10)
-
 func main() {
 	log.SetFlags(log.Lshortfile)
+
 	// command line flags
 	publicId := flag.String("publicId", "", "room you want to join to")
 	key := flag.String("key", "", "Bot key")
@@ -38,7 +37,9 @@ func main() {
 	done := make(chan os.Signal)
 	signal.Notify(done, syscall.SIGINT, syscall.SIGTERM)
 
+	// say loop
 	go botSay(b)
+	// read loop
 	go botRead(b)
 
 	<-done

@@ -33,11 +33,14 @@ func main() {
 
 	go func() {
 		for {
+			// Wait for a command to come from the chat server
 			cmd, err := b.Read()
 			if err != nil {
 				log.Println("read error:", err)
 				continue
 			}
+
+			// handle say commands that are not from bots
 			switch cmd.Name {
 			case commands.LSay:
 				if cmd.Get("bot") == "false" {
