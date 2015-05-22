@@ -1,6 +1,6 @@
 # StreamMe Bot Package
 
-Provides a simple library form creating a StreamMe chat bot. 
+Provides a simple library for creating a StreamMe chat bot. 
 
 ## API Documentation
 
