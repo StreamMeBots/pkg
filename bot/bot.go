@@ -266,6 +266,8 @@ func (b *Bot) isOnline() error {
 }
 
 func (b *Bot) emit(i interface{}) {
+	b.mx.RLock()
+	defer b.mx.RUnlock()
 	for id, ch := range b.subs {
 		select {
 		case ch <- i:
