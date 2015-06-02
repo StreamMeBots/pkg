@@ -246,7 +246,7 @@ func (b *Bot) retryTimeout(command string, checkCommand string, retryCount int, 
 			continue
 		}
 		if cmd.Name != checkCommand {
-			log.Printf("%s: wrong command: %s. Trying again...\n", checkCommand, cmd.Name)
+			log.Printf("%s: wrong command: %s Args: %+v. Trying again...\n", checkCommand, cmd.Name, cmd.Args)
 			continue
 		}
 		break
