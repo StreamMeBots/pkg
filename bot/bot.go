@@ -92,8 +92,8 @@ func New(host, key, secret, userPublicId string, confs ...Config) (*Bot, error) 
 	return b, nil
 }
 
-// Join joins the room
-func (b *Bot) Join() error {
+// JoinRoom joins the room
+func (b *Bot) JoinRoom() error {
 	if err := b.Pass(); err != nil {
 		return err
 	}
