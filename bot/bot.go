@@ -66,7 +66,7 @@ var LogCommands = func(b *Bot) {
 	b.logCommands = true
 }
 
-// New is the constructor for Bot. The Bot will connect and join to the bot's configured chat room
+// New is the constructor for Bot. The Bot will connect to the chat server
 func New(host, key, secret, userPublicId string, confs ...Config) (*Bot, error) {
 	b := &Bot{
 		Room:    commands.NewRoom(userPublicId),
@@ -89,15 +89,20 @@ func New(host, key, secret, userPublicId string, confs ...Config) (*Bot, error) 
 		return nil, err
 	}
 
+	return b, nil
+}
+
+// Join joins the room
+func (b *Bot) Join() error {
 	if err := b.Pass(); err != nil {
-		return nil, err
+		return err
 	}
 
 	if err := b.Join(); err != nil {
-		return nil, err
+		return err
 	}
 
-	return b, nil
+	return nil
 }
 
 // GetInfo gets state info about the Bot

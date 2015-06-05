@@ -21,6 +21,9 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	if err := bot.Join(); err != nil {
+		log.Fatal(err)
+	}
 
 	if err := b.Say("Hello, World!"); err != nil {
 		log.Println("Say error:", err)
