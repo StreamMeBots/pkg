@@ -1,5 +1,3 @@
-# pkg
+# NOTICE
 
-Go packages to help you craft artisanal chat bots.
-
-Your journey should begin with the [bot](https://github.com/StreamMeBots/pkg/tree/master/bot) package.
+This package is deprecated.  A new api is in the works.
